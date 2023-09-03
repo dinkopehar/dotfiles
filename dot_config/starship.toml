@@ -1,0 +1,26 @@
+add_newline = false
+format = "[╭ [$username](italic)$directory$git_branch$git_status](bold green)\n[⎨](bold green) $all\n[╰$character](bold green)\n"
+scan_timeout = 10
+
+[battery]
+disabled = true
+
+[character]
+error_symbol = "[ ψ](bold red)"
+success_symbol = "[ ʓ](bold blue)"
+
+[cmd_duration]
+disabled = true
+
+[line_break]
+disabled = true
+
+[nodejs]
+format = "via [🪢 $version](bold green) "
+
+[python]
+detect_files = []
+detect_folders = [".direnv", "venv"]
+
+[username]
+show_always = true
