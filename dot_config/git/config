@@ -1,0 +1,50 @@
+[alias]
+	ph = "log --graph --pretty=pretty-history --abbrev-commit --date=relative"
+	s = "status --short"
+
+[color]
+	ui = "auto"
+
+[commit]
+	status = false
+	template = "~/.config/git/message"
+
+[core]
+	editor = "nvim"
+	excludesfile = "~/.config/git/ignore"
+	filemode = false
+	untrackedCache = true
+
+[diff]
+	colorMoved = "default"
+
+[help]
+	autocorrect = 1
+
+[init]
+	defaultBranch = "development"
+
+[interactive]
+	diffFilter = "delta --color-only"
+
+[merge]
+	conflictstyle = "diff3"
+	log = true
+
+[pretty]
+	pretty-history = "format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"
+
+[push]
+	default = "current"
+
+[status]
+	displayCommentPrefix = true
+	short = true
+	showUntrackedFiles = "all"
+
+[user]
+	email = "dinko@pehar.dev"
+	name = "Dinko Pehar"
+
+[web]
+	browser = "safari"
