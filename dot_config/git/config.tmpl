@@ -43,8 +43,14 @@
 	showUntrackedFiles = "all"
 
 [user]
-	email = "dinko@pehar.dev"
-	name = "Dinko Pehar"
+	name = {{ .name | quote }}
+	email = {{ .email | quote }}
 
 [web]
+{{- if eq .chezmoi.os "darwin" }}
 	browser = "safari"
+{{- else if eq .chezmoi.os "linux" }}
+	browser = "chrome"
+{{- else }}
+	browser = "edge"
+{{- end }}
