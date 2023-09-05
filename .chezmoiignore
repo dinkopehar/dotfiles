@@ -1,0 +1,4 @@
+README.md
+{{- if eq .chezmoi.os "darwin" -}}
+.hushlogin
+{{- end }}
