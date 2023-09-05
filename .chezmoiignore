@@ -1,4 +1,4 @@
 README.md
-{{- if eq .chezmoi.os "darwin" -}}
-.hushlogin
+{{- if ne .chezmoi.os "darwin" }}
+.hushlogin # only manage .hushlogin on MacOS
 {{- end }}
