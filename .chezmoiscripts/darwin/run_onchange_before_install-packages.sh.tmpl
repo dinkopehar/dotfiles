@@ -1,0 +1,50 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+
+set -eufo pipefail
+
+brew tap homebrew/cask-fonts
+
+
+echo "Installing Brew packages..."
+
+{{ $brews := list
+"bat"
+"bitwarden-cli"
+"cloc"
+"exa"
+"fish"
+"fisher"
+"fortune"
+"httpie"
+"neovim"
+"peco"
+"pfetch"
+"ripgrep"
+"starship"
+"jq"
+"tealdeer"
+"tree-sitter" -}}
+
+{{ $casks := list
+"alt-tab"
+"docker"
+"figma"
+"font-iosevka-nerd-font"
+"font-jetbrains-mono-nerd-font"
+"keycastr"
+"rectangle"
+"visual-studio-code"
+"smoothscroll"
+"jetbrains-toolbox" -}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
+
+{{ end -}}
