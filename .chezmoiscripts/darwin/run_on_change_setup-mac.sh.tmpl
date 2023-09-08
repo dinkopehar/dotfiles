@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "darwin" }}
-    # TODO
-{{- end }}
-
+{{ if eq .chezmoi.os "darwin" -}}
+    #!/bin/sh
+    echo "Running setup-mac.sh.tmpl"
+{{ end -}}

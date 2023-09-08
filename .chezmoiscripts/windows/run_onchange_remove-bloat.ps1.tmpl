@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" -}}
     Get-AppxPackage -AllUsers Microsoft.549981C3F5F10 | Remove-AppxPackage
     Get-AppxPackage -AllUsers Microsoft.BingWeather | Remove-AppxPackage
     Get-AppxPackage -AllUsers Microsoft.GetHelp | Remove-AppxPackage

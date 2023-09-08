@@ -1,4 +1,5 @@
-{{- if eq .chezmoi.os "linux" }}
-    # TODO
-{{- end }}
+{{ if eq .chezmoi.os "linux" -}}
+    #!/bin/sh
+    echo "Running wsh.sh.tmpl"
+{{ end -}}
 
