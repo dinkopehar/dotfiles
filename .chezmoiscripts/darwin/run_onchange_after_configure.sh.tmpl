@@ -1,0 +1,17 @@
+{{ if eq .chezmoi.os "darwin" -}}
+
+#!/bin/sh
+
+set -eufo pipefail
+
+echo "Writings MacOS defaults..."
+
+defaults write com.apple.dock show-process-indicators -bool true
+defaults write com.apple.finder EmptyTrashSecurely -bool true
+defaults write com.apple.finder CreateDesktop -bool false
+
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0.2
+
+
+{{ end -}}
