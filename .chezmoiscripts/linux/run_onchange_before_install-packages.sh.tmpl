@@ -5,7 +5,7 @@
     set -euf pipefail
 
     # Missing:
-    # fisher, pfetch, starship, tealdeer
+    # fisher, pfetch, starship, tealdeer, gnome-builder, pnpm
 
     {{ $packages := list
       "bat"
@@ -17,7 +17,9 @@
       "neovim"
       "peco"
       "ripgrep"
-      "jq" -}}
+      "jq"
+      "php" 
+      "rust-all" -}}
 
     {{ $applications := list
       "com.mattjakeman.ExtensionManager"
@@ -25,8 +27,7 @@
       "org.freecadweb.FreeCAD"
       "io.github.dubstar_04.design"
       "org.kicad.KiCad"
-      "org.gustavoperedo.FontDownloader"
-      "org.gnome.Builder" -}}
+      "org.gustavoperedo.FontDownloader" -}}
 
     sudo apt install -y {{ range ($packages | sortAlpha | uniq) -}}{{ . }} {{ end -}}
     {{ " " }}
