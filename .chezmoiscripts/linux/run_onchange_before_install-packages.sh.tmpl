@@ -1,0 +1,36 @@
+{{ if eq .chezmoi.os "linux" -}}
+    #!/bin/sh
+    echo "Running wsl.sh.tmpl"
+
+    set -euf pipefail
+
+    # Missing:
+    # fisher, pfetch, starship, tealdeer
+
+    {{ $packages := list
+      "bat"
+      "cloc"
+      "exa"
+      "fish"
+      "fortune"
+      "httpie"
+      "neovim"
+      "peco"
+      "ripgrep"
+      "jq" -}}
+
+    {{ $applications := list
+      "com.mattjakeman.ExtensionManager"
+      "org.librecad.librecad"
+      "org.freecadweb.FreeCAD"
+      "io.github.dubstar_04.design"
+      "org.kicad.KiCad"
+      "org.gustavoperedo.FontDownloader"
+      "org.gnome.Builder" -}}
+
+    sudo apt install -y {{ range ($packages | sortAlpha | uniq) -}}{{ . }} {{ end -}}
+    {{ " " }}
+    flatpak install --noninteractive {{ range ($applications | sortAlpha | uniq) -}}{{ . }} {{ end -}}
+
+{{ end -}}
+
