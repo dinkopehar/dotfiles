@@ -1,3 +1,7 @@
 function cat
-  bat $argv
+  if type -q bat
+    bat $argv
+  else # Some wierd stuff on PopOS
+    batcat $argv
+  end
 end
