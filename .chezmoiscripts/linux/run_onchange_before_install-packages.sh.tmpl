@@ -4,8 +4,12 @@
 
     set -euf pipefail
 
+    #curl -fsSL https://get.pnpm.io/install.sh | sh -
+    #curl -sS https://starship.rs/install.sh | sh
+    #curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
     # Missing:
-    # fisher, pfetch, starship, tealdeer, gnome-builder, pnpm
+    # pfetch, tealdeer
 
     {{ $packages := list
       "bat"
@@ -19,7 +23,8 @@
       "ripgrep"
       "jq"
       "php" 
-      "rust-all" -}}
+      "rust-all"
+      "gnome-builder" -}}
 
     {{ $applications := list
       "com.mattjakeman.ExtensionManager"
