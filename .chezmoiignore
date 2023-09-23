@@ -2,3 +2,14 @@ README.md
 {{- if ne .chezmoi.os "darwin" }}
 .hushlogin # only manage .hushlogin on MacOS
 {{- end }}
+
+{{- if ne .chezmoi.os "windows" }}
+Documents/*
+.config/winfetch
+{{- end }}
+
+{{- if eq .chezmoi.os "windows" }}
+# ignore these on windows
+.config/nvim
+.config/fish
+{{- end }}

@@ -1,3 +1,3 @@
 {{ if not (stat (joinPath .chezmoi.homeDir ".ssh" "github")) }}
-{{ bitwardenAttachment "github" "d131a7aa-8ec8-4e8e-a0bd-acd201605404" }}
+{{- bitwardenAttachment "github" "d131a7aa-8ec8-4e8e-a0bd-acd201605404" -}}
 {{ end }}
