@@ -1,13 +1,19 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = false
-format = "[╭ [$username](italic)$directory$git_branch$git_status](bold green)\n[⎨](bold green) $all\n[╰$character](bold green)\n"
+format = """
+[╭─ [$username](italic)$directory$git_branch$git_status](bold green)
+[│](green) $all
+[╰─ $character](bold green)"""
 scan_timeout = 10
 
 [battery]
 disabled = true
 
 [character]
-error_symbol = "[ ψ](bold red)"
-success_symbol = "[ ʓ](bold blue)"
+error_symbol = "[ψ](bold red)"
+success_symbol = "[ʓ](bold blue)"
 
 [cmd_duration]
 disabled = true
