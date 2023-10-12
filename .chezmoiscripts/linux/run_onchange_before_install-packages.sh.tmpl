@@ -26,17 +26,17 @@
       "rust-all"
       "gnome-builder" -}}
 
-    {{ $applications := list
-      "com.mattjakeman.ExtensionManager"
-      "org.librecad.librecad"
-      "org.freecadweb.FreeCAD"
-      "io.github.dubstar_04.design"
-      "org.kicad.KiCad"
-      "org.gustavoperedo.FontDownloader" -}}
+    #{{ $applications := list
+    #  "com.mattjakeman.ExtensionManager"
+    #  "org.librecad.librecad"
+    #  "org.freecadweb.FreeCAD"
+    #  "io.github.dubstar_04.design"
+    #  "org.kicad.KiCad"
+    #  "org.gustavoperedo.FontDownloader" -}}
 
     sudo apt install -y {{ range ($packages | sortAlpha | uniq) -}}{{ . }} {{ end -}}
     {{ " " }}
-    flatpak install --noninteractive {{ range ($applications | sortAlpha | uniq) -}}{{ . }} {{ end -}}
+    #flatpak install --noninteractive {{ range ($applications | sortAlpha | uniq) -}}{{ . }} {{ end -}}
 
 {{ end -}}
 
