@@ -41,15 +41,6 @@ return {
             end, { expr = true })
         end,
     },
-    {
-        "jackMort/ChatGPT.nvim",
-        config = true,
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
-        },
-    },
     { "lewis6991/gitsigns.nvim", opts = { show_deleted = true }, event = "BufRead" },
     { "numToStr/Comment.nvim", config = true, event = "BufRead" },
     { "LnL7/vim-nix", ft = "nix" },

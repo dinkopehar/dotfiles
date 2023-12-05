@@ -6,7 +6,6 @@ return {
                 "c",
                 "lua",
                 "vim",
-                "help",
                 "query",
                 "svelte",
                 "nix",
