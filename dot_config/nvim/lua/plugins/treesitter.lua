@@ -13,7 +13,7 @@ return {
                 "html",
                 "heex",
                 "eex",
-                "elixir"
+                "elixir",
             },
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,

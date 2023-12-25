@@ -38,12 +38,28 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "j-hui/fidget.nvim", config = true },
+            {
+                "j-hui/fidget.nvim",
+                opts = {
+                    integration = {
+                        ["nvim-tree"] = {
+                            enable = false, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+                        },
+                    },
+                },
+            },
+            {
+                "williamboman/mason-lspconfig.nvim",
+                dependencies = { "williamboman/mason.nvim" },
+                opts = {
+                    automatic_installation = true,
+                },
+            },
             { "simrat39/rust-tools.nvim" },
             -- {
             --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
             --     config = true,
-            --     init = function()
+            --     init = function
             --         -- Disable virtual_text since it's redundant due to lsp_lines.
             --         vim.diagnostic.config({ virtual_text = false })
             --     end,
@@ -60,7 +76,7 @@ return {
             },
         },
         config = function()
-            vim.diagnostic.config({ virtual_text = false })
+            vim.diagnostic.config({ virtual_text = true })
             local snippy = require("snippy")
             local cmp = require("cmp")
             cmp.setup({
@@ -121,6 +137,12 @@ return {
                 }),
                 sources = { { name = "nvim_lsp" }, { name = "snippy" } },
             })
+
+            require("mason").setup()
+            require("mason-lspconfig").setup({
+                automatic_installation = true,
+            })
+
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lspconfig = require("lspconfig")
 
@@ -209,7 +231,7 @@ return {
                 { name = "denols", root_dir = lspconfig.util.root_pattern("deno.json"), autostart = false },
                 { name = "elixirls", cmd = { "elixir-ls" } },
                 { name = "gopls" },
-                { name = "nil_ls" },
+                -- { name = "nil_ls" },
                 { name = "dockerls" },
                 { name = "docker_compose_language_service" },
                 { name = "intelephense" },
@@ -233,9 +255,9 @@ return {
 
             -- Add Code diagnostic
             local signs = {
-                Error = " ",
-                Warn = "",
-                Hint = " ",
+                Error = "🐛",
+                Warn = "☢",
+                -- Hint = "",
                 Info = " ",
             }
             for type, icon in pairs(signs) do
