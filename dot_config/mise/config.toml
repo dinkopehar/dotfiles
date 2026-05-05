@@ -3,6 +3,7 @@ chezmoi = "latest"
 claude-code = "latest"
 codex = "latest"
 crystal = "latest"
+erlang = "latest"
 "github:BurntSushi/ripgrep" = "latest"
 go = "latest"
 hishtory = "latest"
@@ -10,3 +11,7 @@ jq = "latest"
 rust = "latest"
 starship = "latest"
 zoxide = "latest"
+elixir = "latest"
+
+[settings]
+env_shell_expand = false

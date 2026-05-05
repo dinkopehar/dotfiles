@@ -32,3 +32,5 @@ cspell.json
 package-lock.json
 vendor/gems
 mise.toml
+repomix*
+.repomixignore

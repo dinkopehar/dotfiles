@@ -1,0 +1,33 @@
+[user]
+	name = "Dinko Pehar"
+	email = "dinko@pehar.dev"
+
+[alias]
+	s = "status --short"
+
+[commit]
+	status = false
+
+[core]
+	editor = "zed"
+	excludesfile = "~/.config/git/ignore"
+	filemode = false
+	untrackedCache = true
+	autocrlf = false
+
+[diff]
+	colorMoved = "default"
+
+[help]
+	autocorrect = 1
+
+[init]
+	defaultBranch = "development"
+
+[push]
+	default = "current"
+
+[status]
+	displayCommentPrefix = true
+	short = true
+	showUntrackedFiles = "all"
