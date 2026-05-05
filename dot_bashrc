@@ -1,0 +1,18 @@
+eval "$(/home/wabbajack/.local/bin/mise activate bash)"
+
+alias ll='ls -la'                  # List files in long format
+alias l='ls -la'
+alias grep='rg'                    # Alternative grep
+alias rm='rm -i'                   # Confirm before deleting
+alias cp='cp -i'                   # Confirm before overwriting
+alias mv='mv -i'                   # Confirm before moving
+alias ..='cd ..'                   # Go up one directory
+alias ...='cd ../..'               # Go up two directories
+
+export EDITOR="zed --wait"
+export VISUAL="zed --wait"
+export BROWSER_USE_WAYLAND=1
+export PLAYWRIGHT_CHROMIUM_USE_WAYLAND=1
+
+eval "$(starship init bash)"
+eval "$(zoxide init --cmd cd bash)"
