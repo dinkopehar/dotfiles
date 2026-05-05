@@ -9,10 +9,15 @@ alias mv='mv -i'                   # Confirm before moving
 alias ..='cd ..'                   # Go up one directory
 alias ...='cd ../..'               # Go up two directories
 
-export EDITOR="zed --wait"
-export VISUAL="zed --wait"
+export EDITOR="flatpak run dev.zed.Zed --wait"
+export VISUAL="flatpak run dev.zed.Zed --wait"
 export BROWSER_USE_WAYLAND=1
 export PLAYWRIGHT_CHROMIUM_USE_WAYLAND=1
 
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
+
+# Hishtory Config:
+# TODO: Remove this once available through mise
+export PATH="$PATH:/home/wabbajack/.hishtory"
+source /home/wabbajack/.hishtory/config.sh

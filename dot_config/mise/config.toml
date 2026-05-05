@@ -12,6 +12,7 @@ rust = "latest"
 starship = "latest"
 zoxide = "latest"
 elixir = "latest"
+age = "latest"
 
 [settings]
 env_shell_expand = false
