@@ -1,0 +1,12 @@
+[tools]
+chezmoi = "latest"
+claude-code = "latest"
+codex = "latest"
+crystal = "latest"
+"github:BurntSushi/ripgrep" = "latest"
+go = "latest"
+hishtory = "latest"
+jq = "latest"
+rust = "latest"
+starship = "latest"
+zoxide = "latest"
