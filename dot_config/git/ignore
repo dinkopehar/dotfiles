@@ -31,3 +31,4 @@ shard.lock
 cspell.json
 package-lock.json
 vendor/gems
+mise.toml
