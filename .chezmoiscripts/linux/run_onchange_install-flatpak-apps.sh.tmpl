@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+{{- if eq .chezmoi.os "linux" }}
+
+set -euo pipefail
+
+apps=(
+  com.github.tenderowl.frog
+  com.google.Chrome
+  com.mattjakeman.ExtensionManager
+  com.redis.RedisInsight
+  dev.zed.Zed
+  io.dbeaver.DBeaverCommunity
+  org.biblemulti.thelife
+  org.gitfourchette.gitfourchette
+)
+
+for app in "${apps[@]}"; do
+  if flatpak info "$app" >/dev/null 2>&1; then
+    echo "$app already installed"
+  else
+    flatpak install -y flathub "$app"
+  fi
+done
+
+{{- end }}

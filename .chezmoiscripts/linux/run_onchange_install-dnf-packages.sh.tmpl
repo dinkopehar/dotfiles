@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+{{- if eq .chezmoi.os "linux" }}
+
+set -euo pipefail
+
+if ! command -v dnf >/dev/null 2>&1; then
+  echo "dnf not found, skipping DNF packages"
+  exit 0
+fi
+
+packages=(
+    perl-FindBin
+    libuuid-devel
+    readline-devel
+    autoconf ncurses-devel
+    gcc-c++
+    jemalloc-devel
+)
+
+sudo dnf install -y "${packages[@]}"
+
+sudo dnf group install -y development-tools
+
+{{- end }}
