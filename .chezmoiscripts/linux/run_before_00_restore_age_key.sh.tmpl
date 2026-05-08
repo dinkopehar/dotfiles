@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{- $env := bitwardenFields "item" "Fedora" }}
+AGE_SECRET_KEY={{ $env.AGE_SECRET_KEY.value }}
+
+AGE_DIR="${HOME}/.config/chezmoi"
+AGE_KEY_FILE="${AGE_DIR}/key.txt"
+
+mkdir -p "$AGE_DIR"
+chmod 700 "$AGE_DIR"
+
+# If key already exists, do not overwrite it.
+if [[ -s "$AGE_KEY_FILE" ]]; then
+  chmod 600 "$AGE_KEY_FILE"
+  echo "age key already exists at $AGE_KEY_FILE"
+  exit 0
+fi
+
+if ! command -v bw >/dev/null 2>&1; then
+  echo "Bitwarden CLI 'bw' is not installed. Cannot restore age key."
+  echo "Install it, then run chezmoi apply again."
+  exit 1
+fi
+
+# Check Bitwarden login status.
+BW_STATUS="$(bw status | jq -r '.status')"
+
+case "$BW_STATUS" in
+  unauthenticated)
+    echo "Bitwarden CLI is not logged in."
+    echo "Run: bw login"
+    echo "Then run: chezmoi apply"
+    exit 1
+    ;;
+  locked)
+    echo "Bitwarden vault is locked."
+    echo "Run: export BW_SESSION=\"\$(bw unlock --raw)\""
+    echo "Then run: chezmoi apply"
+    exit 1
+    ;;
+  unlocked)
+    ;;
+  *)
+    echo "Unknown Bitwarden status: $BW_STATUS"
+    exit 1
+    ;;
+esac
+
+echo "Restoring age key from Bitwarden..."
+
+echo "$AGE_SECRET_KEY" > "$AGE_KEY_FILE"
+
+chmod 600 "$AGE_KEY_FILE"
+
+# Basic validation: age identity files normally contain AGE-SECRET-KEY.
+if ! grep -q "AGE-SECRET-KEY" "$AGE_KEY_FILE"; then
+  echo "Fetched file does not look like an age private key."
+  echo "Removing invalid key file."
+  rm -f "$AGE_KEY_FILE"
+  exit 1
+fi
+
+echo "age key restored to $AGE_KEY_FILE"
