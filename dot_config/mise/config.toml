@@ -1,5 +1,4 @@
 [tools]
-chezmoi = "latest"
 claude-code = "latest"
 codex = "latest"
 crystal = "latest"
