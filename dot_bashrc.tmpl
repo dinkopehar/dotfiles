@@ -17,6 +17,10 @@ export PLAYWRIGHT_CHROMIUM_USE_WAYLAND=1
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 
+{{- $env := bitwardenFields "item" "Fedora" }}
+
+export OPENAI_API_KEY={{ $env.OPENAI_API_KEY.value | quote }}
+
 # Hishtory Config:
 # TODO: Remove this once available through mise
 export PATH="$PATH:/home/wabbajack/.hishtory"

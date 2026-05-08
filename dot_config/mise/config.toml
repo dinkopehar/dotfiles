@@ -14,6 +14,9 @@ zoxide = "latest"
 elixir = "latest"
 age = "latest"
 bitwarden = "latest"
+github-cli = "latest"
+aws = { version = "latest", symlink_bins = "true" }
+uv = "latest"
 
 [settings]
 env_shell_expand = false
