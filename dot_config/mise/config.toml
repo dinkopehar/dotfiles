@@ -16,6 +16,7 @@ bitwarden = "latest"
 github-cli = "latest"
 aws = { version = "latest", symlink_bins = "true" }
 uv = "latest"
+chezmoi = "latest"
 
 [settings]
 env_shell_expand = false

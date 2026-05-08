@@ -4,16 +4,20 @@ My dotfiles, managed with [chezmoi](https://chezmoi.io/).
 
 ## Installation
 
-Install:
-- Chezmoi
-- Bitwarden CLI
-- Brew(_MacOS_)
+> curl https://mise.run | sh
 
 then use:
 
 ```bash
-export BW_SESSION=$(bw unlock --raw)
-chezmoi init --apply dinko-pehar
+mise exec chezmoi bitwarden -- chezmoi init --apply dinko-pehar
 ```
 
-to apply settings.
+for temporary tool execution to apply settings.
+
+## Helper
+
+Export `BW_SESSION` to unlock Bitwarden CLI:
+
+```bash
+export BW_SESSION=$(bw unlock --raw)
+```
