@@ -17,6 +17,7 @@ github-cli = "latest"
 aws = { version = "latest", symlink_bins = "true" }
 uv = "latest"
 chezmoi = "latest"
+"pipx:tldr" = "latest"
 
 [settings]
 env_shell_expand = false
