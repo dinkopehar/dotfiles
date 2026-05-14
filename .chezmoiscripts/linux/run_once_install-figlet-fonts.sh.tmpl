@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+FONT_DIR="$HOME/.local/share/figlet"
+REPO_DIR="$FONT_DIR/xero-figlet-fonts"
+REPO_URL="https://github.com/xero/figlet-fonts.git"
+
+mkdir -p "$FONT_DIR"
+
+if ! command -v git >/dev/null 2>&1; then
+  echo "git is required but not installed."
+  exit 1
+fi
+
+if ! command -v figlet >/dev/null 2>&1; then
+  if command -v dnf >/dev/null 2>&1; then
+    sudo dnf install -y figlet
+  else
+    echo "figlet is required but no supported package manager was found."
+    exit 1
+  fi
+fi
+
+if [[ -d "$REPO_DIR/.git" ]]; then
+  echo "Updating figlet fonts..."
+  git -C "$REPO_DIR" pull --ff-only
+else
+  echo "Installing figlet fonts..."
+  git clone --depth 1 "$REPO_URL" "$REPO_DIR"
+fi
+
+echo "Figlet fonts installed to:"
+echo "  $REPO_DIR"
+echo
+echo "Example:"
+echo "  figlet -d \"$REPO_DIR\" -f \"ANSI Shadow\" \"Dinko\""
