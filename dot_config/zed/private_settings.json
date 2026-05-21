@@ -1,34 +1,21 @@
 {
-  "agent": {
-    "dock": "left",
-    "sidebar_side": "right",
-    "favorite_models": [],
-    "model_parameters": []
-  },
+  "disable_ai": true,
   "diff_view_style": "unified",
-  "agent_servers": {
-    "claude-acp": {
-      "type": "registry"
-    },
-    "codex-acp": {
-      "type": "registry"
-    }
-  },
   "git_panel": {
-    "dock": "right",
+    "dock": "left",
     "tree_view": true
   },
   "icon_theme": {
-    "mode": "dark",
+    "mode": "light",
     "light": "Material Icon Theme",
     "dark": "Material Icon Theme",
   },
+  "buffer_font_size": 16,
   "ui_font_size": 17,
-  "buffer_font_size": 15.5,
   "theme": {
-    "mode": "dark",
+    "mode": "light",
     "light": "One Light",
-    "dark": "One Dark",
+    "dark": "GitHub Dark Default",
   },
   "auto_install_extensions": {
     "dockerfile": true,
@@ -51,10 +38,9 @@
   },
   "collaboration_panel": {
     "button": false,
-    "dock": "right"
   },
   "project_panel": {
-    "dock": "right",
+    "dock": "left",
     "indent_guides": {
       "show": "never"
     },
