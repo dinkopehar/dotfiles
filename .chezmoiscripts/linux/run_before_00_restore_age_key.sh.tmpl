@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-{{- $env := bitwardenFields "item" "Fedora" }}
-AGE_SECRET_KEY={{ $env.AGE_SECRET_KEY.value }}
-
 AGE_DIR="${HOME}/.config/chezmoi"
 AGE_KEY_FILE="${AGE_DIR}/key.txt"
 
@@ -46,6 +43,10 @@ case "$BW_STATUS" in
     exit 1
     ;;
 esac
+
+
+{{- $env := bitwardenFields "item" "Fedora" }}
+AGE_SECRET_KEY={{ $env.AGE_SECRET_KEY.value }}
 
 echo "Restoring age key from Bitwarden..."
 
