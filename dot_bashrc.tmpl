@@ -21,9 +21,12 @@ export PLAYWRIGHT_CHROMIUM_USE_WAYLAND=1
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 
+{{- if env "OPENAI_API_KEY" }}
+export OPENAI_API_KEY={{ env "OPENAI_API_KEY" | quote }}
+{{- else }}
 {{- $env := bitwardenFields "item" "Fedora" }}
-
 export OPENAI_API_KEY={{ $env.OPENAI_API_KEY.value | quote }}
+{{- end }}
 
 # Hishtory Config:
 # TODO: Remove this once available through mise

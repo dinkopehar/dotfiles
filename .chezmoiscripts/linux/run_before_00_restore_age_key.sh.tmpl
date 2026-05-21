@@ -8,15 +8,24 @@ mkdir -p "$AGE_DIR"
 chmod 700 "$AGE_DIR"
 
 # If key already exists, do not overwrite it.
-if [[ -s "$AGE_KEY_FILE" ]]; then
+if [[ -e "$AGE_KEY_FILE" ]]; then
   chmod 600 "$AGE_KEY_FILE"
   echo "age key already exists at $AGE_KEY_FILE"
   exit 0
 fi
 
+{{- $ageKeyFile := joinPath .chezmoi.homeDir ".config/chezmoi/key.txt" -}}
+{{- if not (stat $ageKeyFile) }}
+
 if ! command -v bw >/dev/null 2>&1; then
   echo "Bitwarden CLI 'bw' is not installed. Cannot restore age key."
   echo "Install it, then run chezmoi apply again."
+  exit 1
+fi
+
+if ! command -v jq >/dev/null 2>&1; then
+  echo "'jq' is not installed. Cannot check Bitwarden status."
+  echo "Install jq, then run chezmoi apply again."
   exit 1
 fi
 
@@ -44,13 +53,12 @@ case "$BW_STATUS" in
     ;;
 esac
 
-
 {{- $env := bitwardenFields "item" "Fedora" }}
-AGE_SECRET_KEY={{ $env.AGE_SECRET_KEY.value }}
+AGE_SECRET_KEY={{ $env.AGE_SECRET_KEY.value | quote }}
 
 echo "Restoring age key from Bitwarden..."
 
-echo "$AGE_SECRET_KEY" > "$AGE_KEY_FILE"
+printf '%s\n' "$AGE_SECRET_KEY" > "$AGE_KEY_FILE"
 
 chmod 600 "$AGE_KEY_FILE"
 
@@ -63,3 +71,5 @@ if ! grep -q "AGE-SECRET-KEY" "$AGE_KEY_FILE"; then
 fi
 
 echo "age key restored to $AGE_KEY_FILE"
+
+{{- end }}
