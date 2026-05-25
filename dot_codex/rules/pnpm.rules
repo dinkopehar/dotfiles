@@ -1,0 +1,53 @@
+# Dependency installation from existing lockfile/package.json
+prefix_rule(
+    pattern=["pnpm", "install"],
+    decision="allow",
+    justification="Allow dependency installation for trusted workspaces",
+    match=[
+        "pnpm install",
+        "pnpm install --frozen-lockfile",
+        "pnpm install --ignore-scripts",
+    ],
+)
+
+prefix_rule(
+    pattern=["pnpm", "i"],
+    decision="allow",
+    justification="Alias for pnpm install",
+    match=[
+        "pnpm i",
+        "pnpm i --frozen-lockfile",
+    ],
+)
+
+# Mutating dependency graph: prompt instead of auto-allow
+prefix_rule(
+    pattern=["pnpm", "add"],
+    decision="prompt",
+    justification="Adding packages changes dependency manifests and may run install hooks",
+)
+
+prefix_rule(
+    pattern=["pnpm", "remove"],
+    decision="prompt",
+    justification="Removing packages changes dependency manifests",
+)
+
+# Running arbitrary project scripts: prompt
+prefix_rule(
+    pattern=["pnpm", "run"],
+    decision="prompt",
+    justification="Project scripts can execute arbitrary shell commands",
+)
+
+prefix_rule(
+    pattern=["pnpm", "exec"],
+    decision="prompt",
+    justification="pnpm exec can run arbitrary local binaries",
+)
+
+prefix_rule(
+    pattern=["pnpm", "dlx"],
+    decision="prompt",
+    justification="pnpm dlx downloads and executes packages",
+)
