@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-{{ includeTemplate ".chezmoitemplates/linux/os.sh" . }}
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora")) }}
 
 FONT_DIR="$HOME/.local/share/figlet"
 REPO_DIR="$FONT_DIR/xero-figlet-fonts"
@@ -9,18 +9,8 @@ REPO_URL="https://github.com/xero/figlet-fonts.git"
 
 mkdir -p "$FONT_DIR"
 
-if ! command -v git >/dev/null 2>&1; then
-  echo "git is required but not installed."
-  exit 1
-fi
-
 if ! command -v figlet >/dev/null 2>&1; then
-  if is_fedora; then
     sudo dnf install -y figlet
-  else
-    echo "figlet is required but this installer only supports Fedora."
-    exit 1
-  fi
 fi
 
 if [[ -d "$REPO_DIR/.git" ]]; then
@@ -36,3 +26,5 @@ echo "  $REPO_DIR"
 echo
 echo "Example:"
 echo "  figlet -d \"$REPO_DIR\" -f \"ANSI Shadow\" \"Dinko\""
+
+{{- end }}

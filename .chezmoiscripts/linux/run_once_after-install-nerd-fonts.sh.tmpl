@@ -27,6 +27,11 @@ trap cleanup EXIT
 mkdir -p "$FONT_DIR"
 
 for font in "${FONTS[@]}"; do
+
+  if [[ -n "${FONT_DIR}/${font}" ]]; then
+    continue
+  fi
+
   echo "Installing Nerd Font: $font"
 
   zip_file="${TMP_DIR}/${font}.zip"
