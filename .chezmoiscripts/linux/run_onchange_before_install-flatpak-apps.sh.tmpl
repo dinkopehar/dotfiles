@@ -11,14 +11,13 @@ apps=(
   io.dbeaver.DBeaverCommunity
   org.biblemulti.thelife
   org.gitfourchette.gitfourchette
+  io.podman_desktop.PodmanDesktop
+  net.poedit.Poedit
+  org.jamovi.jamovi
+  org.localsend.localsend_app
+  be.alexandervanhee.gradia
 )
 
-for app in "${apps[@]}"; do
-  if flatpak info "$app" >/dev/null 2>&1; then
-    echo "$app already installed"
-  else
-    flatpak install -y flathub "$app"
-  fi
-done
+flatpak install -y flathub "${apps[@]}"
 
 {{- end }}
