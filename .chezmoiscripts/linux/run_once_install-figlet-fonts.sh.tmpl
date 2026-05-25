@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+{{ includeTemplate ".chezmoitemplates/linux/os.sh" . }}
+
 FONT_DIR="$HOME/.local/share/figlet"
 REPO_DIR="$FONT_DIR/xero-figlet-fonts"
 REPO_URL="https://github.com/xero/figlet-fonts.git"
@@ -13,10 +15,10 @@ if ! command -v git >/dev/null 2>&1; then
 fi
 
 if ! command -v figlet >/dev/null 2>&1; then
-  if command -v dnf >/dev/null 2>&1; then
+  if is_fedora; then
     sudo dnf install -y figlet
   else
-    echo "figlet is required but no supported package manager was found."
+    echo "figlet is required but this installer only supports Fedora."
     exit 1
   fi
 fi

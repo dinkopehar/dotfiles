@@ -4,8 +4,10 @@
 
 set -euo pipefail
 
-if ! command -v dnf >/dev/null 2>&1; then
-  echo "dnf not found, skipping DNF packages"
+{{ includeTemplate ".chezmoitemplates/linux/os.sh" . }}
+
+if ! is_fedora; then
+  echo "Not Fedora, skipping DNF packages"
   exit 0
 fi
 
