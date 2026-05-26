@@ -21,3 +21,20 @@ node = "latest"
 [settings]
 env_shell_expand = false
 experimental = true
+
+[hooks]
+enter = """
+projects_dir="$HOME/Projects"
+
+case "$PWD" in
+  "$projects_dir"/*)
+    rel="${PWD#"$projects_dir"/}"
+    project="${rel%%/*}"
+
+    [ -n "$project" ] && figlet \
+      -d "$HOME/.local/share/figlet/xero-figlet-fonts" \
+      -f 'ANSI Shadow' \
+      "$project"
+    ;;
+esac
+"""
