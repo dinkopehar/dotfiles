@@ -1,6 +1,7 @@
 README.md
 TODO.md
-AGENTS.md
+.agents
+.codex
 {{- if ne .chezmoi.os "darwin" }}
 .hushlogin # only manage .hushlogin on MacOS
 {{- end }}
