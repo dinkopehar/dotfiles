@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+is_linux() {
+  [[ "$(uname -s)" == "Linux" ]]
+}
+
+if ! is_linux; then
+  echo "Not Linux. Skipping Flatpak app installation."
+  exit 0
+fi
+
+# Nerd Fonts to install.
+# Names must match the ZIP names from:
+# https://github.com/ryanoasis/nerd-fonts/releases/latest/download/<FontName>.zip
+FONTS=(
+  "JetBrainsMono"
+  "FiraCode"
+  "Hack"
+  "Meslo"
+  "D2Coding"
+  "ZedMono"
+)
+
+FONT_DIR="${HOME}/.local/share/fonts/NerdFonts"
+TMP_DIR="$(mktemp -d)"
+
+cleanup() {
+  rm -rf "$TMP_DIR"
+}
+trap cleanup EXIT
+
+mkdir -p "$FONT_DIR"
+
+for font in "${FONTS[@]}"; do
+
+  if [[ -n "${FONT_DIR}/${font}" ]]; then
+    continue
+  fi
+
+  echo "Installing Nerd Font: $font"
+
+  zip_file="${TMP_DIR}/${font}.zip"
+  target_dir="${FONT_DIR}/${font}"
+
+  mkdir -p "$target_dir"
+
+  curl -fL \
+    "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip" \
+    -o "$zip_file"
+
+  unzip -o "$zip_file" -d "$target_dir"
+
+  # Remove Windows font files if present
+  find "$target_dir" -type f -name "*.fon" -delete
+  find "$target_dir" -type f -name "*.exe" -delete
+
+  echo "Installed: $font"
+done
+
+echo "Refreshing font cache..."
+fc-cache -fv "$FONT_DIR"
+
+echo "Installed Nerd Fonts:"
+fc-list "$FONT_DIR" | awk -F: '{print $2}' | sort -u

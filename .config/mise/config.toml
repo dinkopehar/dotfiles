@@ -1,0 +1,23 @@
+[tools]
+claude-code = "latest"
+codex = "latest"
+"github:BurntSushi/ripgrep" = "latest"
+go = "latest"
+hishtory = "latest"
+jq = "latest"
+starship = "latest"
+zoxide = "latest"
+age = "latest"
+github-cli = "latest"
+aws = { version = "latest", symlink_bins = "true" }
+uv = "latest"
+chezmoi = "latest"
+"pipx:tldr" = "latest"
+rust = "latest"
+"cargo:macchina" = "latest"
+"npm:skills" = "latest"
+node = "latest"
+
+[settings]
+env_shell_expand = false
+experimental = true
