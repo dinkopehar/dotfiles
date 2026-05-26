@@ -1,5 +1,3 @@
 - Claude/Codex skills, MCPs
 - History backup and encrypt
 - SSH
-- Add skills from .agents/ to track installed skills
-- Continue with scripts to remove chezmoi

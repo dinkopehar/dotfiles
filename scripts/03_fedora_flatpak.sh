@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-is_linux() {
-  [[ "$(uname -s)" == "Linux" ]]
-}
-
-if ! is_linux; then
-  echo "Not Linux. Skipping Flatpak app installation."
-  exit 0
-fi
-
 if ! command -v flatpak >/dev/null 2>&1; then
   echo "flatpak is not installed. Skipping Flatpak app installation."
   exit 0

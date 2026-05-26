@@ -30,9 +30,6 @@ packages=(
   fuse
   fuse-libs
   figlet
-)
-
-extra_packages=(
   geos
   geos-devel
   proj
@@ -48,5 +45,4 @@ extra_packages=(
 
 sudo dnf install --quiet --assumeyes \
   "${packages[@]}" \
-  @development-tools \
-  "${extra_packages[@]}"
+  @development-tools

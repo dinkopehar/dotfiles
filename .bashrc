@@ -4,31 +4,29 @@ if [ -f /etc/profile.d/bash_completion.sh ]; then
   source /etc/profile.d/bash_completion.sh
 fi
 
-alias ll='ls -la'                  # List files in long format
+alias ll='ls -la'
 alias l='ls -la'
-alias grep='rg'                    # Alternative grep
-alias rm='rm -i'                   # Confirm before deleting
-alias cp='cp -i'                   # Confirm before overwriting
-alias mv='mv -i'                   # Confirm before moving
-alias ..='cd ..'                   # Go up one directory
-alias ...='cd ../..'               # Go up two directories
+alias grep='rg'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ..='cd ..'
+alias ...='cd ../..'
 
-export EDITOR="flatpak run dev.zed.Zed --wait"
-export VISUAL="flatpak run dev.zed.Zed --wait"
+export EDITOR="zed --wait"
+export VISUAL="zed --wait"
 export BROWSER_USE_WAYLAND=1
 export PLAYWRIGHT_CHROMIUM_USE_WAYLAND=1
 
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 
-{{- if env "OPENAI_API_KEY" }}
-export OPENAI_API_KEY={{ env "OPENAI_API_KEY" | quote }}
-{{- else }}
-{{- $env := bitwardenFields "item" "Fedora" }}
-export OPENAI_API_KEY={{ $env.OPENAI_API_KEY.value | quote }}
-{{- end }}
+# TODO: Load env variables somehow ?
 
 # Hishtory Config:
 # TODO: Remove this once available through mise
 export PATH="$PATH:/home/wabbajack/.hishtory"
-source /home/wabbajack/.hishtory/config.sh
+
+if [ -f /home/wabbajack/.hishtory/config.sh ]; then
+  source /home/wabbajack/.hishtory/config.sh
+fi

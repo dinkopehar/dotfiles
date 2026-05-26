@@ -18,5 +18,4 @@ else
   echo "Zed installation finished, but 'zed' was not found in PATH."
   echo "Add this to your shell config if missing:"
   echo '  export PATH="$HOME/.local/bin:$PATH"'
-  exit 1
 fi

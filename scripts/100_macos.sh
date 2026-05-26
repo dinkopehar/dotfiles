@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-filename='.hushlogin'
-filename_path="$HOME/$filename"
-
 if [[ "$(uname -s)" != "Darwin" ]]; then
     exit 0
 fi
+
+filename='.hushlogin'
+filename_path="$HOME/$filename"
+
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     echo "Writings MacOS defaults..."
