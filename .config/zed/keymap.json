@@ -7,18 +7,6 @@
 // from the command palette.
 [
   {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      // "j k": "vim::NormalBefore"
-    }
-  },
-  {
     "bindings": {
       "shift shift": "terminal_panel::ToggleFocus"
     }
@@ -34,4 +22,22 @@
       ]
     }
   },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-shift-g": "outline::Toggle"
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "ctrl-shift-o": "outline::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-g": "git_panel::ToggleFocus"
+    }
+  }
 ]

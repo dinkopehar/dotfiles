@@ -1,19 +1,81 @@
 {
-  "disable_ai": true,
-  "diff_view_style": "unified",
-  "git_panel": {
-    "dock": "left",
-    "tree_view": true
+  "file_scan_exclusions": [
+    "__pycache__",
+    ".ruff_cache",
+    ".mypy_cache",
+    ".pytest_cache",
+  ],
+  "gutter": {
+    "line_numbers": false,
+    "min_line_number_digits": 3,
   },
+  "centered_layout": {
+    "right_padding": 0.05,
+    "left_padding": 0.15,
+  },
+  "experimental.theme_overrides": {
+    "pane_group.border": "#00000000",
+  },
+  "theme_overrides": {
+    "One Light": {
+      "syntax": {
+        "comment": {
+          "color": "#6A737D",
+          "font_style": "italic",
+        },
+        "string.doc": {
+          "color": "#3A737D",
+          "font_style": "italic",
+        },
+      },
+    },
+    "GitHub Dark Default": {
+      "syntax": {
+        "comment": {
+          "color": "#73737D",
+          "font_style": "italic",
+        },
+        "string.doc": {
+          "color": "#7A737D",
+          "font_style": "italic",
+        },
+      },
+    },
+  },
+  "scrollbar": {
+    "diagnostics": "none",
+  },
+  "tabs": {
+    "file_icons": true,
+  },
+  "excerpt_context_lines": 3,
+  "diagnostics_max_severity": "off",
+  "status_bar": {
+    "cursor_position_button": false,
+  },
+  "diagnostics": {
+    "button": false,
+  },
+  "search": {
+    "button": false,
+  },
+  "disable_ai": true,
+  "diff_view_style": "split",
+  "git_panel": {
+    "sort_by_path": true,
+    "dock": "left",
+    "tree_view": false,
+  },
+  "cursor_shape": "hollow",
   "icon_theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "Material Icon Theme",
     "dark": "Material Icon Theme",
   },
   "buffer_font_size": 16,
   "ui_font_size": 17,
   "theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "One Light",
     "dark": "GitHub Dark Default",
   },
@@ -28,13 +90,15 @@
       "enabled": false,
     },
   },
+  "go_to_definition_scroll_strategy": "top",
   "format_on_save": "off",
   "terminal": {
     "copy_on_select": true,
+    "detect_venv": "off",
   },
   "autosave": "on_focus_change",
   "indent_guides": {
-    "enabled": false
+    "enabled": false,
   },
   "collaboration_panel": {
     "button": false,
@@ -42,9 +106,14 @@
   "project_panel": {
     "dock": "left",
     "indent_guides": {
-      "show": "never"
+      "show": "never",
     },
     "auto_fold_dirs": false,
-    "hide_root": true
-  }
+    "hide_root": true,
+    "git_status": false,
+    "git_status_indicator": false,
+  },
+  "title_bar": {
+    "show_user_picture": false,
+  },
 }
