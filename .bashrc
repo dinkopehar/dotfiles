@@ -26,7 +26,4 @@ eval "$(zoxide init --cmd cd bash)"
 # Hishtory Config:
 # TODO: Remove this once available through mise
 export PATH="$PATH:/home/wabbajack/.hishtory"
-
-if [ -f /home/wabbajack/.hishtory/config.sh ]; then
-  source /home/wabbajack/.hishtory/config.sh
-fi
+source /home/wabbajack/.hishtory/config.sh
