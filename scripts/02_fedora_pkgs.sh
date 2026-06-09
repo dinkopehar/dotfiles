@@ -41,6 +41,9 @@ packages=(
   json-c
   json-c-devel
   libxml2-devel
+  llvm
+  openssl-devel
+  gcc-c++
 )
 
 sudo dnf install --quiet --assumeyes \
