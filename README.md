@@ -16,9 +16,7 @@
 ---
 
 <div align="center">
-  <img src=".github/assets/terminal.png" alt="Terminal setup" width="48%" />
-  <img src=".github/assets/zed.png" alt="Zed editor setup" width="48%" />
-  <img src=".github/assets/wallpaper.png" alt="Wallpaper Fedora" width="90%" />
+  <img src=".github/assets/wallpaper.png" alt="Wallpaper Fedora" width="10%" />
 </div>
 
 ## Stack
