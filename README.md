@@ -16,6 +16,11 @@
 
 ---
 
+<div align="center">
+  <img src=".github/assets/terminal.png" alt="Terminal setup" width="48%" />
+  <img src=".github/assets/zed.png" alt="Zed editor setup" width="48%" />
+</div>
+
 ## Stack
 
 <table>
@@ -30,6 +35,7 @@
     </td>
     <td valign="top" width="33%">
       <strong>Mise</strong><br />
+      <img src=".github/assets/mise-logo.svg" alt="Mise logo" height="26" /><br />
       The runtime and tool manager that keeps core CLI dependencies reproducible across machines.
     </td>
   </tr>
