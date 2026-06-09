@@ -1,12 +1,5 @@
 <div align="center">
-  <pre>
-██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
-██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
-██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗
-██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║
-██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
-╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
-  </pre>
+  <img src=".github/assets/dotfiles-wallpaper.png" alt="Dotfiles Figlet Font" width="100%" />
   <p>
     This repository is the working surface behind my daily machine setup:
     a curated editor, reproducible tooling, opinionated defaults, and a bootstrap flow
@@ -40,7 +33,7 @@
       The primary editor, tuned for a cleaner UI, light theme bias, and built-in AI tooling.
     </td>
     <td valign="top" width="33%">
-      <strong>Mise</strong><br />
+      <strong>Mise</strong>
       <img src=".github/assets/mise-logo.svg" alt="Mise logo" height="26" /><br />
       The runtime and tool manager that keeps core CLI dependencies reproducible across machines.
     </td>
@@ -84,4 +77,4 @@ The fastest way to apply the setup is:
 ./bootstrap.sh
 ```
 
-That entrypoint walks the shell scripts in [`scripts/`](scripts/) and applies the managed setup step by step.
+That entrypoint walks the shell scripts in [`scripts/`](scripts/) and applies the managed setup step by step. Tested on Fedora 44.
