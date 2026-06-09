@@ -1,4 +1,26 @@
 {
+  "debugger": {
+    "dock": "right"
+  },
+  "edit_predictions": {
+    "provider": "zed",
+    "mode": "subtle"
+  },
+  "agent": {
+    "inline_assistant_model": {
+      "provider": "openai",
+      "model": "gpt-5.3-codex",
+      "enable_thinking": false
+    },
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-7",
+      "enable_thinking": true,
+      "effort": "high"
+    },
+    "sidebar_side": "right",
+    "button": false,
+  },
   "file_scan_exclusions": [
     "__pycache__",
     ".ruff_cache",
@@ -44,6 +66,18 @@
   },
   "scrollbar": {
     "diagnostics": "none",
+    "axes": {
+      "horizontal": false,
+    },
+  },
+  "outline_panel": {
+    "indent_size": 10,
+    "indent_guides": {
+      "show": "never",
+    },
+    "scrollbar": {
+      "show": "never",
+    },
   },
   "tabs": {
     "file_icons": true,
@@ -59,23 +93,24 @@
   "search": {
     "button": false,
   },
-  "disable_ai": true,
+  "disable_ai": false,
   "diff_view_style": "split",
   "git_panel": {
     "sort_by_path": true,
     "dock": "left",
-    "tree_view": false,
+    "tree_view": true,
   },
   "cursor_shape": "hollow",
   "icon_theme": {
-    "mode": "dark",
+    "mode": "light",
     "light": "Material Icon Theme",
     "dark": "Material Icon Theme",
   },
+  "buffer_line_height": { "custom": 1.7 },
   "buffer_font_size": 16,
   "ui_font_size": 17,
   "theme": {
-    "mode": "dark",
+    "mode": "light",
     "light": "One Light",
     "dark": "GitHub Dark Default",
   },
@@ -84,6 +119,9 @@
     "html": true,
     "toml": true,
     "sql": true,
+    "make": true,
+    "material-icon-theme": true,
+    "github-dark-default": true
   },
   "git": {
     "inline_blame": {
@@ -108,6 +146,8 @@
     "indent_guides": {
       "show": "never",
     },
+    "indent_size": 10.0,
+    "show_diagnostics": "off",
     "auto_fold_dirs": false,
     "hide_root": true,
     "git_status": false,
