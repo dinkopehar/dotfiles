@@ -16,7 +16,7 @@
 ---
 
 <div align="center">
-  <img src=".github/assets/wallpaper.png" alt="Wallpaper Fedora" width="10%" />
+  <img src=".github/assets/wallpaper.png" alt="Wallpaper Fedora" width="100%" />
 </div>
 
 ## Stack
