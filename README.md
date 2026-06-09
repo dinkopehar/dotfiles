@@ -22,7 +22,7 @@
 
 ---
 
-<div>
+<div align="center">
   <img src=".github/assets/terminal.png" alt="Terminal setup" width="80%" />
   <img src=".github/assets/zed.png" alt="Zed editor setup" width="80%" />
 </div>
