@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=".github/assets/dotfiles-wallpaper.png" alt="Dotfiles Figlet Font" width="100%" />
+  <img src=".github/assets/dotfiles-wallpaper.png" alt="Dotfiles Figlet Font" width="60%" />
   <p>
     This repository is the working surface behind my daily machine setup:
     a curated editor, reproducible tooling, opinionated defaults, and a bootstrap flow
@@ -16,8 +16,9 @@
 ---
 
 <div align="center">
-  <img src=".github/assets/terminal.png" alt="Terminal setup" width="80%" />
-  <img src=".github/assets/zed.png" alt="Zed editor setup" width="80%" />
+  <img src=".github/assets/terminal.png" alt="Terminal setup" width="48%" />
+  <img src=".github/assets/zed.png" alt="Zed editor setup" width="48%" />
+  <img src=".github/assets/wallpaper.png" alt="Wallpaper Fedora" width="90%" />
 </div>
 
 ## Stack
