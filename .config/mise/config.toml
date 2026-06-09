@@ -11,13 +11,13 @@ age = "latest"
 github-cli = "latest"
 aws = { version = "latest", symlink_bins = "true" }
 uv = "latest"
-chezmoi = "latest"
 "pipx:tldr" = "latest"
 rust = "latest"
-"cargo:macchina" = "latest"
 "npm:skills" = "latest"
 node = "latest"
 bun = "latest"
+"cargo:patent" = "latest"
+herdr = "latest"
 
 [settings]
 env_shell_expand = false
