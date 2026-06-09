@@ -1,6 +1,12 @@
 <div align="center">
-  <h1>dotfiles</h1>
-  <p><strong>A calm, light-themed development environment for Bash, Zed, and agent-first work.</strong></p>
+  <pre>
+██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
+██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
+██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗
+██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║
+██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
+╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
+  </pre>
   <p>
     This repository is the working surface behind my daily machine setup:
     a curated editor, reproducible tooling, opinionated defaults, and a bootstrap flow
@@ -16,9 +22,9 @@
 
 ---
 
-<div align="center">
-  <img src=".github/assets/terminal.png" alt="Terminal setup" width="48%" />
-  <img src=".github/assets/zed.png" alt="Zed editor setup" width="48%" />
+<div>
+  <img src=".github/assets/terminal.png" alt="Terminal setup" width="80%" />
+  <img src=".github/assets/zed.png" alt="Zed editor setup" width="80%" />
 </div>
 
 ## Stack
