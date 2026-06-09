@@ -1,2 +1,1 @@
-- Claude/Codex skills, MCPs
 - History backup and encrypt
