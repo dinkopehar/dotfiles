@@ -7,7 +7,6 @@ if ! command -v flatpak >/dev/null 2>&1; then
 fi
 
 apps=(
-  com.github.tenderowl.frog
   com.google.Chrome
   com.mattjakeman.ExtensionManager
   io.dbeaver.DBeaverCommunity
