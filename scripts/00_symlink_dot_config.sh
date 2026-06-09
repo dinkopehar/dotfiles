@@ -12,6 +12,8 @@ links=(
   ".config/git/config"
   ".config/git/ignore"
   ".config/background"
+  ".bashrc"
+  ".env.sh"
 )
 
 for path in "${links[@]}"; do
