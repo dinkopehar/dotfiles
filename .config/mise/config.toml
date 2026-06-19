@@ -18,6 +18,8 @@ node = "latest"
 bun = "latest"
 "cargo:patent" = "latest"
 herdr = "latest"
+"cargo:typst-cli" = "latest"
+ruby = "latest"
 
 [settings]
 env_shell_expand = false
