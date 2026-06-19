@@ -44,6 +44,7 @@ The test: Every changed line should trace directly to the user's request.
 - Do not make assumptions, ask questions when in doubt
 - Prefer rg over grep.
 - Comments: Leave comments to explain tricky areas of the code or to explain WHY something is there, but don't just leave comments everywhere, the code should be default readable
+- Never use "em dashes" when writing.
 
 # Overrides
 
