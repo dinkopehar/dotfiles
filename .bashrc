@@ -30,3 +30,10 @@ fi
 # TODO: Remove this once available through mise
 export PATH="$PATH:/home/wabbajack/.hishtory"
 source /home/wabbajack/.hishtory/config.sh
+
+if [[ $- == *i* ]] \
+    && [[ -n "${PTYXIS_PROFILE:-}" ]] \
+    && [[ -z "${HERDR_ENV:-}" ]] \
+    && command -v herdr >/dev/null 2>&1; then
+    exec herdr
+fi

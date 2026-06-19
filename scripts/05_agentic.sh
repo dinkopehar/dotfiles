@@ -12,6 +12,11 @@ skills add mattpocock/skills --global --yes \
   -a claude-code \
   --skill caveman
 
+skills add ogulcancelik/herdr --global --yes \
+  -a codex \
+  -a claude-code \
+  --skill herdr
+
 root_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 
 link_file() {
