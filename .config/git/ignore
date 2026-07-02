@@ -31,6 +31,6 @@ shard.lock
 cspell.json
 package-lock.json
 vendor/gems
-mise.toml
 repomix*
 .repomixignore
+**/.claude/settings.local.json
