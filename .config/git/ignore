@@ -34,3 +34,4 @@ vendor/gems
 repomix*
 .repomixignore
 **/.claude/settings.local.json
+**/graphify-out

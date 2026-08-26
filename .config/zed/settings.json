@@ -93,9 +93,10 @@
   "search": {
     "button": false,
   },
-  "disable_ai": false,
+  "disable_ai": true,
   "diff_view_style": "split",
   "git_panel": {
+    "group_by": "status",
     "sort_by_path": true,
     "dock": "left",
     "tree_view": true,
@@ -110,7 +111,7 @@
   "buffer_font_size": 16,
   "ui_font_size": 17,
   "theme": {
-    "mode": "light",
+    "mode": "system",
     "light": "One Light",
     "dark": "GitHub Dark Default",
   },
