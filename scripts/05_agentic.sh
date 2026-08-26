@@ -17,6 +17,10 @@ skills add ogulcancelik/herdr --global --yes \
   -a claude-code \
   --skill herdr
 
+skills add github/gh-stack --global --yes \
+  -a codex \
+  -a claude-code \
+
 root_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 
 link_file() {
