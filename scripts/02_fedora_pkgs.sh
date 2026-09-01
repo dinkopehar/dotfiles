@@ -44,8 +44,20 @@ packages=(
   llvm
   openssl-devel
   gcc-c++
+  gtk4-devel
+  libadwaita-devel
+  blueprint-compiler
+  dnf-plugins-core
+  android-tools
+  scrcpy
+  flatpak-builder
+  flatpak
+  #vocalinux-gui
 )
 
 sudo dnf install --quiet --assumeyes \
   "${packages[@]}" \
   @development-tools
+
+sudo dnf install --quiet --assumeyes \
+  https://github.com/theBGuy/GitDesktop/releases/download/v0.9.6/GitDesktop-0.9.6-1.x86_64.rpm

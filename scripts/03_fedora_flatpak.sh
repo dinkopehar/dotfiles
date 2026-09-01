@@ -11,12 +11,16 @@ apps=(
   com.mattjakeman.ExtensionManager
   io.dbeaver.DBeaverCommunity
   org.biblemulti.thelife
-  org.gitfourchette.gitfourchette
+  # org.gitfourchette.gitfourchette
   io.podman_desktop.PodmanDesktop
   net.poedit.Poedit
   org.jamovi.jamovi
   org.localsend.localsend_app
   be.alexandervanhee.gradia
+  io.httpie.Httpie
+  io.github.swordpuffin.rewaita
+  com.jeffser.Alpaca
+  com.github.paolostivanin.OTPClient
 )
 
 flatpak install -y flathub "${apps[@]}"
