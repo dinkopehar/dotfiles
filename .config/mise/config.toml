@@ -174,7 +174,7 @@ mode = "0755"
 
 # One shared AGENTS.md for every agent. A relative source would resolve against
 # .config/mise/, so these two need the repo path.
-"~/.claude/AGENTS.md" = { source = "~/Projects/dotfiles/.agents/AGENTS.md" }
+"~/.claude/CLAUDE.md" = { source = "~/Projects/dotfiles/.agents/AGENTS.md" }
 "~/.codex/AGENTS.md" = { source = "~/Projects/dotfiles/.agents/AGENTS.md" }
 
 [bootstrap.macos.defaults]

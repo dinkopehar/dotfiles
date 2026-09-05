@@ -1,1 +1,0 @@
-/home/wabbajack/.local/share/chezmoi/.agents/AGENTS.md
