@@ -21,11 +21,6 @@ export PLAYWRIGHT_CHROMIUM_USE_WAYLAND=1
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 
-# Source env variables
-if [ -f "$HOME/.config/env.sh" ]; then
-  source "$HOME/.env.sh"
-fi
-
 # Hishtory Config:
 # TODO: Remove this once available through mise
 export PATH="$PATH:/home/wabbajack/.hishtory"

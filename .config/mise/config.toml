@@ -32,6 +32,7 @@ ollama = "latest"
 [settings]
 env_shell_expand = false
 experimental = true
+dotfiles.root = "~/Projects/dotfiles"
 
 [hooks]
 enter = """
@@ -49,3 +50,145 @@ case "$PWD" in
     ;;
 esac
 """
+
+# The flatpak manager is skipped when the flatpak CLI is missing, so on a fresh
+# machine the flatpak entries below would need a second bootstrap run.
+[bootstrap.hooks.pre-packages]
+run = 'if command -v dnf >/dev/null && ! command -v flatpak >/dev/null; then sudo dnf install -y flatpak; fi'
+
+[bootstrap.hooks.post-packages]
+run = '''
+if [ -r /etc/os-release ]; then
+  . /etc/os-release
+
+  if [ "${ID:-}" = "fedora" ]; then
+    sudo dnf install --quiet --assumeyes @development-tools
+    sudo dnf install --quiet --assumeyes https://github.com/theBGuy/GitDesktop/releases/download/v0.9.6/GitDesktop-0.9.6-1.x86_64.rpm
+  fi
+fi
+'''
+
+[bootstrap.packages]
+# Fedora build and runtime dependencies
+"dnf:perl-FindBin" = "latest"
+"dnf:libuuid-devel" = "latest"
+"dnf:readline-devel" = "latest"
+"dnf:autoconf" = "latest"
+"dnf:ncurses-devel" = "latest"
+"dnf:gcc-c++" = "latest"
+"dnf:jemalloc-devel" = "latest"
+"dnf:fuse" = "latest"
+"dnf:fuse-libs" = "latest"
+"dnf:figlet" = "latest"
+"dnf:geos" = "latest"
+"dnf:geos-devel" = "latest"
+"dnf:proj" = "latest"
+"dnf:proj-devel" = "latest"
+"dnf:gdal" = "latest"
+"dnf:gdal-devel" = "latest"
+"dnf:protobuf-c" = "latest"
+"dnf:protobuf-c-devel" = "latest"
+"dnf:json-c" = "latest"
+"dnf:json-c-devel" = "latest"
+"dnf:libxml2-devel" = "latest"
+"dnf:llvm" = "latest"
+"dnf:openssl-devel" = "latest"
+"dnf:gtk4-devel" = "latest"
+"dnf:libadwaita-devel" = "latest"
+"dnf:blueprint-compiler" = "latest"
+"dnf:dnf-plugins-core" = "latest"
+"dnf:android-tools" = "latest"
+"dnf:scrcpy" = "latest"
+"dnf:flatpak-builder" = "latest"
+"dnf:flatpak" = "latest"
+# "dnf:vocalinux-gui" = "latest"
+
+# Flatpak apps, system scope. Requires the flathub remote to already exist.
+"flatpak:com.google.Chrome" = "latest"
+"flatpak:com.mattjakeman.ExtensionManager" = "latest"
+"flatpak:io.dbeaver.DBeaverCommunity" = "latest"
+"flatpak:org.biblemulti.thelife" = "latest"
+# "flatpak:org.gitfourchette.gitfourchette" = "latest"
+"flatpak:io.podman_desktop.PodmanDesktop" = "latest"
+"flatpak:net.poedit.Poedit" = "latest"
+"flatpak:org.jamovi.jamovi" = "latest"
+"flatpak:org.localsend.localsend_app" = "latest"
+"flatpak:be.alexandervanhee.gradia" = "latest"
+"flatpak:io.httpie.Httpie" = "latest"
+"flatpak:io.github.swordpuffin.rewaita" = "latest"
+"flatpak:com.jeffser.Alpaca" = "latest"
+"flatpak:com.github.paolostivanin.OTPClient" = "latest"
+
+# macOS only: mise pours these itself, no Homebrew installation required.
+"brew:bat" = { os = "macos" }
+"brew:bitwarden-cli" = { os = "macos" }
+"brew:cloc" = { os = "macos" }
+"brew:exa" = { os = "macos" }
+"brew:fish" = { os = "macos" }
+"brew:fisher" = { os = "macos" }
+"brew:fortune" = { os = "macos" }
+"brew:httpie" = { os = "macos" }
+"brew:jq" = { os = "macos" }
+"brew:neovim" = { os = "macos" }
+"brew:peco" = { os = "macos" }
+"brew:pfetch" = { os = "macos" }
+"brew:ripgrep" = { os = "macos" }
+"brew:starship" = { os = "macos" }
+"brew:tealdeer" = { os = "macos" }
+"brew:tree-sitter" = { os = "macos" }
+
+"brew-cask:alt-tab" = { os = "macos" }
+"brew-cask:docker" = { os = "macos" }
+"brew-cask:figma" = { os = "macos" }
+"brew-cask:font-iosevka-nerd-font" = { os = "macos" }
+"brew-cask:font-jetbrains-mono-nerd-font" = { os = "macos" }
+"brew-cask:jetbrains-toolbox" = { os = "macos" }
+"brew-cask:keycastr" = { os = "macos" }
+"brew-cask:rectangle" = { os = "macos" }
+"brew-cask:smoothscroll" = { os = "macos" }
+"brew-cask:visual-studio-code" = { os = "macos" }
+
+[bootstrap.directories."~/Projects"]
+mode = "0755"
+
+# Font pack for the figlet banner in the enter hook above.
+[bootstrap.repos]
+"~/.local/share/figlet/xero-figlet-fonts" = { url = "https://github.com/xero/figlet-fonts.git" }
+
+# Symlinks into $HOME. Sources are resolved under settings.dotfiles.root, so
+# repo paths that mirror $HOME need no explicit source.
+[dotfiles]
+"~/.bashrc" = { mode = "symlink" }
+"~/.config/starship.toml" = { mode = "symlink" }
+"~/.config/zed/settings.json" = { mode = "symlink" }
+"~/.config/zed/keymap.json" = { mode = "symlink" }
+"~/.config/waveterm/settings.json" = { mode = "symlink" }
+"~/.config/mise/config.toml" = { mode = "symlink" }
+"~/.config/git/config" = { mode = "symlink" }
+"~/.config/git/ignore" = { mode = "symlink" }
+"~/.config/background" = { mode = "symlink" }
+"~/.codex/.config.toml" = { mode = "symlink" }
+"~/.codex/rules/pnpm.rules" = { mode = "symlink" }
+"~/.codex/rules/nondestructive-allowlist.rules" = { mode = "symlink" }
+"~/.agents/AGENTS.md" = { mode = "symlink" }
+
+# One shared AGENTS.md for every agent. A relative source would resolve against
+# .config/mise/, so these two need the repo path.
+"~/.claude/AGENTS.md" = { source = "~/Projects/dotfiles/.agents/AGENTS.md" }
+"~/.codex/AGENTS.md" = { source = "~/Projects/dotfiles/.agents/AGENTS.md" }
+
+[bootstrap.macos.defaults]
+"com.apple.dock" = { "show-process-indicators" = true, "autohide" = true, "autohide-delay" = 0.2 }
+"com.apple.finder" = { "EmptyTrashSecurely" = true, "CreateDesktop" = false }
+
+# Runs after [tools] are installed, on every bootstrap, so each script is a
+# no-op when its work is already done.
+[tasks.bootstrap]
+description = "Setup steps with no declarative equivalent"
+run = [
+  "bash ~/Projects/dotfiles/scripts/04_install_zed.sh",
+  "bash ~/Projects/dotfiles/scripts/05_agentic.sh",
+  "bash ~/Projects/dotfiles/scripts/06_nerd_fonts.sh",
+  "bash ~/Projects/dotfiles/scripts/08_ghcli.sh",
+  "bash ~/Projects/dotfiles/scripts/09_gnome_extensions.sh",
+]

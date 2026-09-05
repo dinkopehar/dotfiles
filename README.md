@@ -56,17 +56,17 @@ This setup is optimized for a machine that should feel ready quickly and stay re
 
 - Light, quiet editor defaults over dense or flashy UI.
 - Reproducible tools managed through `mise` instead of one-off installs.
-- Scripted setup for machine bootstrap, package install, and config linking.
+- Declarative machine bootstrap through `mise`: system packages, dotfile links, and repo checkouts.
 - Agent-friendly local development with shared rules and editor integration already wired in.
 
 ## Managed Surface
 
 This repository focuses on a small, intentional surface area rather than trying to own every part of the machine.
 
-- `bootstrap.sh` orchestrates the setup flow by running the scripts in [`scripts/`](scripts/).
-- Selected config is symlinked into place for `Zed`, `mise`, and `starship`.
+- `bootstrap.sh` installs `mise`, links its global config, and hands the flow to `mise bootstrap`.
+- Selected config is symlinked into place for `Zed`, `mise`, and `starship` from `[dotfiles]`.
 - Agent configuration is linked into `.agents`, `.claude`, and `.codex` with shared rules for local coding tools.
-- Platform setup scripts cover Fedora package/bootstrap flows and a separate macOS defaults/install path.
+- `[bootstrap.packages]` covers dnf and Flatpak on Fedora and Homebrew on macOS; `[bootstrap.macos.defaults]` covers macOS preferences.
 
 ## Bootstrap
 
@@ -76,4 +76,6 @@ The fastest way to apply the setup is:
 ./bootstrap.sh
 ```
 
-That entrypoint walks the shell scripts in [`scripts/`](scripts/) and applies the managed setup step by step. Tested on Fedora 44.
+That entrypoint installs `mise` if missing, links [`.config/mise/config.toml`](.config/mise/config.toml) to `~/.config/mise/config.toml`, then runs `mise bootstrap`, which converges packages, repo checkouts, dotfile links, and tools before running the `bootstrap` task for the remaining scripts in [`scripts/`](scripts/). Tested on Fedora 44.
+
+Flags pass straight through, so `./bootstrap.sh --dry-run` shows what a run would change and `mise bootstrap plan` reports declarative drift.
