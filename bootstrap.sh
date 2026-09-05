@@ -13,7 +13,7 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 link="$HOME/.config/mise/config.toml"
-target="$root_dir/.config/mise/config.toml"
+target="$root_dir/home/.config/mise/config.toml"
 
 mkdir -p "$(dirname "$link")"
 

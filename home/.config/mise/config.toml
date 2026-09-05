@@ -32,7 +32,7 @@ ollama = "latest"
 [settings]
 env_shell_expand = false
 experimental = true
-dotfiles.root = "~/Projects/dotfiles"
+dotfiles.root = "~/Projects/dotfiles/home"
 
 [hooks]
 enter = """
@@ -155,28 +155,14 @@ mode = "0755"
 [bootstrap.repos]
 "~/.local/share/figlet/xero-figlet-fonts" = { url = "https://github.com/xero/figlet-fonts.git" }
 
-# Symlinks into $HOME. Sources are resolved under settings.dotfiles.root, so
-# repo paths that mirror $HOME need no explicit source.
+# Map every Git-tracked file under home/ to the matching path under $HOME.
 [dotfiles]
+"~" = { source = "~/Projects/dotfiles/home", mode = "symlink-each", manifest = "git" }
 "~/.hushlogin" = { content = "" }
-"~/.bashrc" = { mode = "symlink" }
-"~/.config/starship.toml" = { mode = "symlink" }
-"~/.config/zed/settings.json" = { mode = "symlink" }
-"~/.config/zed/keymap.json" = { mode = "symlink" }
-"~/.config/waveterm/settings.json" = { mode = "symlink" }
-"~/.config/mise/config.toml" = { mode = "symlink" }
-"~/.config/git/config" = { mode = "symlink" }
-"~/.config/git/ignore" = { mode = "symlink" }
-"~/.config/background" = { mode = "symlink" }
-"~/.codex/.config.toml" = { mode = "symlink" }
-"~/.codex/rules/pnpm.rules" = { mode = "symlink" }
-"~/.codex/rules/nondestructive-allowlist.rules" = { mode = "symlink" }
-"~/.agents/AGENTS.md" = { mode = "symlink" }
 
-# One shared AGENTS.md for every agent. A relative source would resolve against
-# .config/mise/, so these two need the repo path.
-"~/.claude/CLAUDE.md" = { source = "~/Projects/dotfiles/.agents/AGENTS.md" }
-"~/.codex/AGENTS.md" = { source = "~/Projects/dotfiles/.agents/AGENTS.md" }
+# One shared AGENTS.md for every agent.
+"~/.claude/CLAUDE.md" = { source = "~/Projects/dotfiles/home/.agents/AGENTS.md" }
+"~/.codex/AGENTS.md" = { source = "~/Projects/dotfiles/home/.agents/AGENTS.md" }
 
 [bootstrap.macos.defaults]
 "com.apple.dock" = { "show-process-indicators" = true, "autohide" = true, "autohide-delay" = 0.2 }
