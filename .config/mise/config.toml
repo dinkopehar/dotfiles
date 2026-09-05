@@ -158,6 +158,7 @@ mode = "0755"
 # Symlinks into $HOME. Sources are resolved under settings.dotfiles.root, so
 # repo paths that mirror $HOME need no explicit source.
 [dotfiles]
+"~/.hushlogin" = { content = "" }
 "~/.bashrc" = { mode = "symlink" }
 "~/.config/starship.toml" = { mode = "symlink" }
 "~/.config/zed/settings.json" = { mode = "symlink" }
