@@ -186,7 +186,11 @@ mode = "0755"
 [tasks.bootstrap]
 description = "Setup steps with no declarative equivalent"
 run = [
-  "bash ~/Projects/dotfiles/scripts/04_install_zed.sh",
+  '''
+  if ! command -v zed >/dev/null 2>&1; then
+    curl -f https://zed.dev/install.sh | sh
+  fi
+  ''',
   "bash ~/Projects/dotfiles/scripts/05_agentic.sh",
   "bash ~/Projects/dotfiles/scripts/06_nerd_fonts.sh",
   "bash ~/Projects/dotfiles/scripts/08_ghcli.sh",
