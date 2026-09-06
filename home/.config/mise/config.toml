@@ -100,6 +100,9 @@ fi
 "dnf:scrcpy" = "latest"
 "dnf:flatpak-builder" = "latest"
 "dnf:flatpak" = "latest"
+"dnf:gnome-shell-extension-appindicator" = "latest"
+"dnf:gnome-shell-extension-blur-my-shell" = "latest"
+"dnf:gnome-shell-extension-just-perfection" = "latest"
 # "dnf:vocalinux-gui" = "latest"
 
 # Flatpak apps, system scope. Requires the flathub remote to already exist.
@@ -180,6 +183,44 @@ run = [
   fi
   ''',
   "gh extension install agynio/gh-pr-review --force",
-  "bash ~/Projects/dotfiles/scripts/06_nerd_fonts.sh",
-  "bash ~/Projects/dotfiles/scripts/09_gnome_extensions.sh",
+  '''
+  if [ "$(uname -s)" = "Linux" ]; then
+    font_dir="$HOME/.local/share/fonts/NerdFonts"
+    mkdir -p "$font_dir"
+
+    for font in JetBrainsMono FiraCode Hack Meslo D2Coding ZedMono; do
+      target_dir="$font_dir/$font"
+
+      if find "$target_dir" -type f \( -name '*.ttf' -o -name '*.otf' \) -print -quit 2>/dev/null | grep -q .; then
+        continue
+      fi
+
+      archive="$(mktemp)"
+      curl -fL "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/$font.zip" -o "$archive"
+      mkdir -p "$target_dir"
+      unzip -o "$archive" -d "$target_dir"
+      rm -f "$archive"
+      find "$target_dir" -type f \( -name '*.fon' -o -name '*.exe' \) -delete
+    done
+
+    fc-cache -f "$font_dir"
+  fi
+  ''',
+  '''
+  if [ "$(uname -s)" = "Linux" ] && command -v gnome-shell >/dev/null 2>&1 && command -v gnome-extensions >/dev/null 2>&1; then
+    shell_version="$(gnome-shell --version | awk '{print $3}')"
+    shell_version="${shell_version%%.*}"
+
+    for extension in auto-theme-switcher@amritashan.github.io tophat@fflewddur.github.io; do
+      download_url="$(curl -fsSLG \
+        --data-urlencode "uuid=$extension" \
+        --data-urlencode "shell_version=$shell_version" \
+        https://extensions.gnome.org/extension-info/ | jq -r '.download_url')"
+      archive="$(mktemp)"
+      curl -fsSL "https://extensions.gnome.org$download_url" -o "$archive"
+      gnome-extensions install --force "$archive"
+      rm -f "$archive"
+    done
+  fi
+  ''',
 ]

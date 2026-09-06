@@ -76,6 +76,6 @@ The fastest way to apply the setup is:
 ./bootstrap.sh
 ```
 
-That entrypoint installs `mise` if missing, links [`home/.config/mise/config.toml`](home/.config/mise/config.toml) to `~/.config/mise/config.toml`, then runs `mise bootstrap`, which converges packages, repo checkouts, dotfile links, and tools before running the `bootstrap` task for the remaining scripts in [`scripts/`](scripts/). Files under [`home/`](home/) mirror their paths under `~`. Tested on Fedora 44.
+That entrypoint installs `mise` if missing, links [`home/.config/mise/config.toml`](home/.config/mise/config.toml) to `~/.config/mise/config.toml`, then runs `mise bootstrap`, which converges packages, repo checkouts, dotfile links, tools, and the remaining custom setup tasks. Files under [`home/`](home/) mirror their paths under `~`. Tested on Fedora 44.
 
 Flags pass straight through, so `./bootstrap.sh --dry-run` shows what a run would change and `mise bootstrap plan` reports declarative drift.
