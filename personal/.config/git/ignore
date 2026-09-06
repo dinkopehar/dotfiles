@@ -35,3 +35,4 @@ repomix*
 .repomixignore
 **/.claude/settings.local.json
 .grepai/
+.docs/
