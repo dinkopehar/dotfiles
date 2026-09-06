@@ -31,7 +31,7 @@ ollama = "latest"
 [settings]
 env_shell_expand = false
 experimental = true
-dotfiles.root = "~/Projects/dotfiles/home"
+dotfiles.root = "home"
 
 [hooks]
 enter = """
@@ -159,7 +159,7 @@ mode = "0755"
 
 # Map every Git-tracked file under home/ to the matching path under $HOME.
 [dotfiles]
-"~" = { source = "~/Projects/dotfiles/home", mode = "symlink-each", manifest = "git" }
+"~" = { source = "home", mode = "symlink-each", manifest = "git" }
 "~/.hushlogin" = { content = "" }
 
 # One shared AGENTS.md for every agent.

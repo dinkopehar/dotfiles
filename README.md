@@ -63,19 +63,26 @@ This setup is optimized for a machine that should feel ready quickly and stay re
 
 This repository focuses on a small, intentional surface area rather than trying to own every part of the machine.
 
-- `bootstrap.sh` installs `mise`, links its global config, and hands the flow to `mise bootstrap`.
-- Selected config is symlinked into place for `Zed`, `mise`, and `starship` from `[dotfiles]`.
+- `mise.toml` is the repository bootstrap entry point; install `mise` separately, then select a machine profile.
+- Selected config is symlinked into place for `Zed` and `starship` from `[dotfiles]`.
 - Agent configuration is linked into `.agents`, `.claude`, and `.codex` with shared rules for local coding tools.
 - `[bootstrap.packages]` covers dnf and Flatpak on Fedora and Homebrew on macOS; `[bootstrap.macos.defaults]` covers macOS preferences.
 
 ## Bootstrap
 
-The fastest way to apply the setup is:
+Install `mise` first:
 
 ```bash
-./bootstrap.sh
+curl https://mise.run | sh
 ```
 
-That entrypoint installs `mise` if missing, links [`home/.config/mise/config.toml`](home/.config/mise/config.toml) to `~/.config/mise/config.toml`, then runs `mise bootstrap`, which converges packages, repo checkouts, dotfile links, tools, and the remaining custom setup tasks. Files under [`home/`](home/) mirror their paths under `~`. Tested on Fedora 44.
+Then run the profile for the current machine from the cloned repository:
 
-Flags pass straight through, so `./bootstrap.sh --dry-run` shows what a run would change and `mise bootstrap plan` reports declarative drift.
+```bash
+mise trust
+mise -E personal bootstrap
+```
+
+`personal` currently preserves the existing Fedora desktop setup. `raspberry` and `server` are intentionally empty starting points, so their packages, services, and dotfiles can be added without inheriting desktop setup. Files under [`home/`](home/) mirror their paths under `~` for the `personal` profile. The repository no longer installs a global mise configuration, so select the profile with `-E` whenever a mise command needs its tools or configuration.
+
+Use `mise -E <profile> bootstrap --dry-run` to preview changes and `mise -E <profile> bootstrap plan` to report declarative drift.
