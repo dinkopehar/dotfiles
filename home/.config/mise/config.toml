@@ -13,7 +13,6 @@ aws = { version = "latest", symlink_bins = "true" }
 uv = "latest"
 "pipx:tldr" = "latest"
 rust = "latest"
-"npm:skills" = "latest"
 node = "latest"
 bun = "latest"
 herdr = "latest"
@@ -163,6 +162,8 @@ mode = "0755"
 # One shared AGENTS.md for every agent.
 "~/.claude/CLAUDE.md" = { source = "~/Projects/dotfiles/home/.agents/AGENTS.md" }
 "~/.codex/AGENTS.md" = { source = "~/Projects/dotfiles/home/.agents/AGENTS.md" }
+"~/.claude/skills" = { source = "~/Projects/dotfiles/home/.agents/skills", mode = "symlink-each", manifest = "git" }
+"~/.codex/skills" = { source = "~/Projects/dotfiles/home/.agents/skills", mode = "symlink-each", manifest = "git" }
 
 [bootstrap.macos.defaults]
 "com.apple.dock" = { "show-process-indicators" = true, "autohide" = true, "autohide-delay" = 0.2 }
@@ -178,7 +179,6 @@ run = [
     curl -f https://zed.dev/install.sh | sh
   fi
   ''',
-  "bash ~/Projects/dotfiles/scripts/05_agentic.sh",
   "bash ~/Projects/dotfiles/scripts/06_nerd_fonts.sh",
   "bash ~/Projects/dotfiles/scripts/08_ghcli.sh",
   "bash ~/Projects/dotfiles/scripts/09_gnome_extensions.sh",
