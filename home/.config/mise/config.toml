@@ -179,7 +179,7 @@ run = [
     curl -f https://zed.dev/install.sh | sh
   fi
   ''',
+  "gh extension install agynio/gh-pr-review --force",
   "bash ~/Projects/dotfiles/scripts/06_nerd_fonts.sh",
-  "bash ~/Projects/dotfiles/scripts/08_ghcli.sh",
   "bash ~/Projects/dotfiles/scripts/09_gnome_extensions.sh",
 ]
