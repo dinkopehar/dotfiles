@@ -62,7 +62,13 @@ if [ -r /etc/os-release ]; then
 
   if [ "${ID:-}" = "fedora" ]; then
     sudo dnf install --quiet --assumeyes @development-tools
-    sudo dnf install --quiet --assumeyes https://github.com/theBGuy/GitDesktop/releases/download/v0.11.1/GitDesktop-0.11.1-1.x86_64.rpm
+
+    if ! rpm -q --quiet git-desktop-0.11.1-1; then
+      git_desktop_rpm="$(mktemp --suffix=.rpm)"
+      trap 'rm -f "$git_desktop_rpm"' EXIT
+      curl -fL https://github.com/theBGuy/GitDesktop/releases/download/v0.11.1/GitDesktop-0.11.1-1.x86_64.rpm -o "$git_desktop_rpm"
+      sudo dnf install --quiet --assumeyes "$git_desktop_rpm"
+    fi
   fi
 fi
 '''
@@ -109,6 +115,7 @@ fi
 "flatpak:com.google.Chrome" = "latest"
 "flatpak:com.mattjakeman.ExtensionManager" = "latest"
 "flatpak:io.dbeaver.DBeaverCommunity" = "latest"
+"flatpak:io.github.IshuSinghSE.aurynk" = "latest"
 "flatpak:org.biblemulti.thelife" = "latest"
 # "flatpak:org.gitfourchette.gitfourchette" = "latest"
 "flatpak:io.podman_desktop.PodmanDesktop" = "latest"
@@ -120,6 +127,8 @@ fi
 "flatpak:io.github.swordpuffin.rewaita" = "latest"
 "flatpak:com.jeffser.Alpaca" = "latest"
 "flatpak:com.github.paolostivanin.OTPClient" = "latest"
+"flatpak:org.videolan.vlc" = "latest"
+"flatpak:re.sonny.Workbench" = "latest"
 
 # macOS only: mise pours these itself, no Homebrew installation required.
 "brew:bat" = { os = "macos" }
@@ -156,6 +165,16 @@ mode = "0755"
 # Font pack for the figlet banner in the enter hook above.
 [bootstrap.repos]
 "~/.local/share/figlet/xero-figlet-fonts" = { url = "https://github.com/xero/figlet-fonts.git" }
+"~/Projects/boosteroid-electron" = { url = "git@github.com:dinkopehar/boosteroid-electron.git" }
+"~/Projects/dotfiles" = { url = "git@github.com:dinkopehar/dotfiles.git" }
+"~/Projects/github-profile-page" = { url = "git@github.com:dinkopehar/dinkopehar.git" }
+"~/Projects/nanobot" = { url = "https://github.com/HKUDS/nanobot.git" }
+"~/Projects/personal-blog" = { url = "git@github.com:dinkopehar/personal-blog.git" }
+"~/Projects/bjoern" = { url = "https://github.com/jonashaag/bjoern.git" }
+"~/Projects/postgrest" = { url = "https://github.com/PostgREST/postgrest.git" }
+"~/Projects/rclone" = { url = "https://github.com/rclone/rclone.git" }
+"~/Projects/ruby" = { url = "https://github.com/ruby/ruby.git" }
+"~/Projects/liam" = { url = "git@github.com:dinkopehar/liam.git" }
 
 # Map every Git-tracked file under personal/ to the matching path under $HOME.
 [dotfiles]
@@ -165,7 +184,6 @@ mode = "0755"
 
 # One shared AGENTS.md for every agent.
 "~/.claude/CLAUDE.md" = { source = "personal/.agents/AGENTS.md" }
-"~/.codex/AGENTS.md" = { source = "personal/.agents/AGENTS.md" }
 "~/.claude/skills" = { source = "personal/.agents/skills", mode = "symlink-each" }
 "~/.codex/skills" = { source = "personal/.agents/skills", mode = "symlink-each" }
 
