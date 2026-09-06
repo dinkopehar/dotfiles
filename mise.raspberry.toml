@@ -1,2 +1,58 @@
+[tools]
+uv = "latest"
+"pipx:nanobot-ai" = { version = "latest", depends = ["uv"] }
+
 [settings]
-dotfiles.root = "raspberry"
+dotfiles.root = "~/Projects/dotfiles/raspberry"
+
+[bootstrap.hooks.pre-packages]
+run = '''
+if [ -r /etc/os-release ]; then
+  . /etc/os-release
+
+  if [ "${ID:-}" = "debian" ]; then
+    sudo apt-get update
+    sudo apt-get install --yes ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
+    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+    printf 'deb [arch=%s signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian %s stable\n' "$(dpkg --print-architecture)" "$VERSION_CODENAME" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+    sudo apt-get update
+  fi
+fi
+'''
+
+[bootstrap.packages]
+"apt:ca-certificates" = "latest"
+"apt:curl" = "latest"
+"apt:docker-ce" = "latest"
+"apt:docker-ce-cli" = "latest"
+"apt:containerd.io" = "latest"
+"apt:docker-buildx-plugin" = "latest"
+"apt:docker-compose-plugin" = "latest"
+
+[bootstrap.directories."/srv/forgejo"]
+mode = "0755"
+
+[bootstrap.directories."/srv/forgejo/data"]
+owner = "raspberry"
+group = "raspberry"
+mode = "0755"
+
+[bootstrap.files."/srv/forgejo/compose.yml"]
+source = "/home/raspberry/Projects/dotfiles/raspberry/forgejo/compose.yml"
+mode = "0644"
+
+[bootstrap.services.docker]
+state = "running"
+enabled = true
+
+[bootstrap.compose.forgejo]
+project_dir = "/srv/forgejo"
+files = ["compose.yml"]
+state = "running"
+sudo = true
+depends_on = ["package:apt:docker-ce", "service:docker"]
+
+[dotfiles]
+"~/.config/mise/config.toml" = { source = "~/Projects/dotfiles/mise.raspberry.toml" }

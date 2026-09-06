@@ -85,6 +85,8 @@ mise -E personal bootstrap
 
 `personal` currently preserves the existing Fedora desktop setup. `raspberry` and `server` are intentionally empty starting points, so their packages, services, and dotfiles can be added without inheriting desktop setup. Files under [`personal/`](personal/) mirror their paths under `~` for the `personal` profile. The repository no longer installs a global mise configuration, so select the profile with `-E` whenever a mise command needs its tools or configuration.
 
+For the Raspberry Pi, run `mise -E raspberry bootstrap`. This installs Docker and Nanobot, then starts Forgejo from [`raspberry/forgejo/compose.yml`](raspberry/forgejo/compose.yml). 1Panel and its app data remain independently managed.
+
 Use `mise -E <profile> bootstrap --dry-run` to preview changes and `mise -E <profile> bootstrap plan` to report declarative drift.
 
 Run `mise -E personal bootstrap --update` to fast-forward the repositories declared by the personal profile.
