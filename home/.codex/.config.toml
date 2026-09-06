@@ -1,7 +1,3 @@
-model = "gpt-5.4"
 approval_policy = "on-request"
 model_reasoning_effort = "high"
 personality = "pragmatic"
-
-[tui.model_availability_nux]
-"gpt-5.5" = 3

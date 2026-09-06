@@ -38,7 +38,8 @@ When your changes create orphans:
 
 The test: Every changed line should trace directly to the user's request.
 
-4. Convention
+## 4. Convention
+
 - Keep files under 400 lines of code
 - If you can, break down further so that's easily testable
 - Do not make assumptions, ask questions when in doubt
