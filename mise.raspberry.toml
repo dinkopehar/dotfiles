@@ -1,2 +1,2 @@
-# Raspberry Pi profile. Add only ARM-appropriate packages, services, and
-# dotfiles here as they become necessary.
+[settings]
+dotfiles.root = "raspberry"

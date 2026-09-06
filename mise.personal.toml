@@ -31,7 +31,7 @@ ollama = "latest"
 [settings]
 env_shell_expand = false
 experimental = true
-dotfiles.root = "home"
+dotfiles.root = "personal"
 
 [hooks]
 enter = """
@@ -62,7 +62,7 @@ if [ -r /etc/os-release ]; then
 
   if [ "${ID:-}" = "fedora" ]; then
     sudo dnf install --quiet --assumeyes @development-tools
-    sudo dnf install --quiet --assumeyes https://github.com/theBGuy/GitDesktop/releases/download/v0.9.6/GitDesktop-0.9.6-1.x86_64.rpm
+    sudo dnf install --quiet --assumeyes https://github.com/theBGuy/GitDesktop/releases/download/v0.11.1/GitDesktop-0.11.1-1.x86_64.rpm
   fi
 fi
 '''
@@ -157,16 +157,17 @@ mode = "0755"
 [bootstrap.repos]
 "~/.local/share/figlet/xero-figlet-fonts" = { url = "https://github.com/xero/figlet-fonts.git" }
 
-# Map every Git-tracked file under home/ to the matching path under $HOME.
+# Map every Git-tracked file under personal/ to the matching path under $HOME.
 [dotfiles]
-"~" = { source = "home", mode = "symlink-each", manifest = "git" }
+"~" = { source = "personal", mode = "symlink-each" }
+"~/.config/mise/config.toml" = { source = "mise.personal.toml" }
 "~/.hushlogin" = { content = "" }
 
 # One shared AGENTS.md for every agent.
-"~/.claude/CLAUDE.md" = { source = "~/Projects/dotfiles/home/.agents/AGENTS.md" }
-"~/.codex/AGENTS.md" = { source = "~/Projects/dotfiles/home/.agents/AGENTS.md" }
-"~/.claude/skills" = { source = "~/Projects/dotfiles/home/.agents/skills", mode = "symlink-each", manifest = "git" }
-"~/.codex/skills" = { source = "~/Projects/dotfiles/home/.agents/skills", mode = "symlink-each", manifest = "git" }
+"~/.claude/CLAUDE.md" = { source = "personal/.agents/AGENTS.md" }
+"~/.codex/AGENTS.md" = { source = "personal/.agents/AGENTS.md" }
+"~/.claude/skills" = { source = "personal/.agents/skills", mode = "symlink-each" }
+"~/.codex/skills" = { source = "personal/.agents/skills", mode = "symlink-each" }
 
 [bootstrap.macos.defaults]
 "com.apple.dock" = { "show-process-indicators" = true, "autohide" = true, "autohide-delay" = 0.2 }

@@ -83,6 +83,6 @@ mise trust
 mise -E personal bootstrap
 ```
 
-`personal` currently preserves the existing Fedora desktop setup. `raspberry` and `server` are intentionally empty starting points, so their packages, services, and dotfiles can be added without inheriting desktop setup. Files under [`home/`](home/) mirror their paths under `~` for the `personal` profile. The repository no longer installs a global mise configuration, so select the profile with `-E` whenever a mise command needs its tools or configuration.
+`personal` currently preserves the existing Fedora desktop setup. `raspberry` and `server` are intentionally empty starting points, so their packages, services, and dotfiles can be added without inheriting desktop setup. Files under [`personal/`](personal/) mirror their paths under `~` for the `personal` profile. The repository no longer installs a global mise configuration, so select the profile with `-E` whenever a mise command needs its tools or configuration.
 
 Use `mise -E <profile> bootstrap --dry-run` to preview changes and `mise -E <profile> bootstrap plan` to report declarative drift.
