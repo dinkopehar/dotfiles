@@ -32,28 +32,35 @@ fi
 "apt:docker-buildx-plugin" = "latest"
 "apt:docker-compose-plugin" = "latest"
 
-[bootstrap.directories."/srv/forgejo"]
-mode = "0755"
-
-[bootstrap.directories."/srv/forgejo/data"]
-owner = "raspberry"
-group = "raspberry"
-mode = "0755"
-
-[bootstrap.files."/srv/forgejo/compose.yml"]
-source = "/home/raspberry/Projects/dotfiles/raspberry/forgejo/compose.yml"
-mode = "0644"
-
 [bootstrap.services.docker]
 state = "running"
 enabled = true
 
-[bootstrap.compose.forgejo]
-project_dir = "/srv/forgejo"
-files = ["compose.yml"]
-state = "running"
-sudo = true
-depends_on = ["package:apt:docker-ce", "service:docker"]
+[bootstrap.linux.systemd.units.nanobot-gateway]
+exec_start = "%h/.local/share/mise/shims/nanobot gateway --foreground"
+restart = "on-failure"
+restart_sec = "10s"
+no_new_privileges = true
+private_tmp = true
+
+[bootstrap.hooks.post-tools]
+run = '''
+loginctl enable-linger "$USER"
+systemctl --user restart dev.mise.nanobot-gateway.service
+'''
+
+[bootstrap.hooks.post-packages]
+run = '''
+runtipi_dir="$HOME/runtipi/runtipi"
+
+if [ ! -x "$runtipi_dir/runtipi-cli" ]; then
+  mkdir -p "$HOME/runtipi"
+  cd "$HOME/runtipi"
+  curl -fL https://setup.runtipi.io | sudo bash
+else
+  sudo "$runtipi_dir/runtipi-cli" start
+fi
+'''
 
 [dotfiles]
 "~/.config/mise/config.toml" = { source = "~/Projects/dotfiles/mise.raspberry.toml" }
