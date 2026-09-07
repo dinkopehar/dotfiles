@@ -37,7 +37,7 @@ state = "running"
 enabled = true
 
 [bootstrap.linux.systemd.units.nanobot-gateway]
-exec_start = "%h/.local/share/mise/shims/nanobot gateway --foreground"
+exec_start = "%h/.local/share/mise/installs/pipx-nanobot-ai/latest/bin/nanobot gateway --foreground"
 restart = "on-failure"
 restart_sec = "10s"
 no_new_privileges = true
@@ -57,10 +57,5 @@ if [ ! -x "$runtipi_dir/runtipi-cli" ]; then
   mkdir -p "$HOME/runtipi"
   cd "$HOME/runtipi"
   curl -fL https://setup.runtipi.io | sudo bash
-else
-  sudo "$runtipi_dir/runtipi-cli" start
 fi
 '''
-
-[dotfiles]
-"~/.config/mise/config.toml" = { source = "~/Projects/dotfiles/mise.raspberry.toml" }

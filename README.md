@@ -90,3 +90,17 @@ For the Raspberry Pi, run `mise -E raspberry bootstrap`. This installs Docker an
 Use `mise -E <profile> bootstrap --dry-run` to preview changes and `mise -E <profile> bootstrap plan` to report declarative drift.
 
 Run `mise -E personal bootstrap --update` to fast-forward the repositories declared by the personal profile.
+
+### Remote machines
+
+Run remote profiles from this laptop; mise transfers a temporary archive over SSH, applies the selected profile, and removes the remote staging directory. The target does not keep a dotfiles clone.
+
+```bash
+mise run deploy:raspberry:dry-run
+mise run deploy:raspberry
+
+mise run deploy:hetzner:dry-run
+mise run deploy:hetzner
+```
+
+The `raspberry` inventory entry targets `raspberry@192.168.0.17`. The `hetzner` entry uses the `hetzner` host in `~/.ssh/config`, so its address, SSH user, and key remain local to this laptop. Use SSH keys; remote runs may still prompt for the target's `sudo` password when a profile changes system state.

@@ -1,2 +1,35 @@
 [settings]
 experimental = true
+
+[bootstrap.remote]
+source = "."
+exclude = [".env*", "*.local.toml"]
+
+[bootstrap.remote.hosts.raspberry]
+host = "192.168.0.17"
+user = "raspberry"
+mise_env = ["raspberry"]
+remote_mise = "~/.local/bin/mise"
+tags = ["home", "raspberry", "arm"]
+
+[bootstrap.remote.hosts.hetzner]
+# Resolve hostname, user, port, and identity through ~/.ssh/config.
+host = "hetzner"
+mise_env = ["server"]
+tags = ["server", "hetzner"]
+
+[tasks."deploy:raspberry"]
+description = "Apply the Raspberry Pi profile from this checkout over SSH"
+run = "mise bootstrap remote raspberry --yes"
+
+[tasks."deploy:raspberry:dry-run"]
+description = "Preview Raspberry Pi changes without applying them"
+run = "mise bootstrap remote raspberry --dry-run"
+
+[tasks."deploy:hetzner"]
+description = "Apply the Hetzner server profile through the hetzner SSH alias"
+run = "mise bootstrap remote hetzner --yes"
+
+[tasks."deploy:hetzner:dry-run"]
+description = "Preview Hetzner changes without applying them"
+run = "mise bootstrap remote hetzner --dry-run"

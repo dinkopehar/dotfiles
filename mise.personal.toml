@@ -27,6 +27,7 @@ shellcheck = "latest"
 crystal = "latest"
 watchexec = "latest"
 ollama = "latest"
+"github:maplibre/martin" = "martin-v1.15.0"
 
 [settings]
 env_shell_expand = false
