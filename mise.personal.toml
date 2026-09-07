@@ -184,7 +184,7 @@ mode = "0755"
 # One shared AGENTS.md for every agent.
 "~/.claude/CLAUDE.md" = { source = "~/Projects/dotfiles/personal/.agents/AGENTS.md" }
 "~/.claude/skills" = { source = "~/Projects/dotfiles/personal/.agents/skills", mode = "symlink-each" }
-"~/.codex/skills" = { source = "~/Projects/dotfiles/personal/.agents/skills", mode = "symlink-each" }
+"~/.codex/skills" = { source = "~/Projects/dotfiles/personal/.agents/skills", mode = "copy" }
 
 [bootstrap.macos.defaults]
 "com.apple.dock" = { "show-process-indicators" = true, "autohide" = true, "autohide-delay" = 0.2 }
